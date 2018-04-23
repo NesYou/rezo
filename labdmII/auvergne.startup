@@ -1,0 +1,12 @@
+ifconfig eth0 10.0.0.4/8
+ifconfig eth1 172.21.0.254/16
+/etc/init.d/dhcp3-server start
+
+#On change l'adresse privée de l'expéditeur du réseau LANA par l'adresse publique du routeur Auvergne
+iptables -t nat -A POSTROUTING -i eth1 -j SNAT --to 10.0.0.4
+
+#On change l'adresse publique destinataire (du routeur auvergne) par l'adresseprivée du destinataire(Alice) sur le réseau LANA
+iptables -t nat -A PREROUTING -p tcp --dport 22 -i eth1 -j DNAT --to 172.21.0.1:22
+
+# TODO : configurer eth1 , DHCP, NAT et iptables
+/etc/init.d/quagga start

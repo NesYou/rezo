@@ -1,0 +1,13 @@
+$TTL	60000
+@		IN	SOA	dns.aliceetbob.net.	root.dns.aliceetbob.net. (
+			1 ; serial
+			28 ; refresh
+			14 ; retry
+			3600000 ; expire
+			60000 ; negative cache ttl
+			)
+@		IN	NS	dns.aliceetbob.net.
+dns		IN	A	194.167.42.101
+ssh		IN	A	194.167.42.102
+www		IN	A	194.167.42.103
+
